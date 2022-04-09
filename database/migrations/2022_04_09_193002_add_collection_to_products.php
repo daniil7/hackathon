@@ -14,7 +14,7 @@ class AddCollectionToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('collection_id')->unsigned();
+            $table->integer('collection_id')->unsigned()->nullable();
             $table->foreign('collection_id')
                   ->references('id')
                   ->on('collections');

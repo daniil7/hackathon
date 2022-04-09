@@ -45,7 +45,7 @@ class ProductController extends Controller
         }
     }
 
-    public function add(Request $request){
+    public function add(Request $request, $product = null){
 
         //
         // Валидация данных
@@ -60,28 +60,46 @@ class ProductController extends Controller
             return redirect()->back()->withErrors(['msg' => 'неверный id']);
         }
 
-        $mimes = array('jpeg','png','jpg','svg');
-        $request->validate([
-               'image' => ['required','image','mimes:'.implode(',', $mimes),'max:2048']
-        ]);
-        //
-        // Сохраняем файл
-        $file = $request->file('image');
-        if( !in_array($file->getClientOriginalExtension(), $mimes)) {
-            return redirect()->back()->withErrors(['msg' => 'Неправильное расширение файла', 'img' => True]);
+        if($product == null) {
+            $mimes = array('jpeg','png','jpg','svg');
+            $request->validate([
+                   'image' => ['required','image','mimes:'.implode(',', $mimes),'max:2048']
+            ]);
         }
-        $destinationPath = storage_path('laravel');
-        $new_filename = $this->getRandomString(30).".".$file->getClientOriginalExtension();
-        $file->move($destinationPath,$new_filename);
 
-        $product = new Product;
+        if($request->file('image') != null) {
+            //
+            // Сохраняем файл
+            $file = $request->file('image');
+            if( !in_array($file->getClientOriginalExtension(), $mimes)) {
+                return redirect()->back()->withErrors(['msg' => 'Неправильное расширение файла', 'img' => True]);
+            }
+            $destinationPath = storage_path('laravel');
+            $new_filename = $this->getRandomString(30).".".$file->getClientOriginalExtension();
+            $file->move($destinationPath,$new_filename);
+        }
+
+        if($product == null){
+            $product = new Product;
+        }
         $product->name = $request->input('name');
         $product->price = $request->input('price');
         $product->description = $request->input('description') != null ? $request->input('description') : "";
-        $product->description = $request->input('collection_id') != null ? $request->input('collection_id') : null;
+        $product->collection_id = $request->input('collection_id') != "" ? $request->input('collection_id') : null;
         $product->category_id = $request->input('category_id');
-        $product->image = $new_filename;
+        if($request->file('image') != null){
+            $product->image = $new_filename;
+        }
         $product->save();
+
+        return redirect()->back();
+    }
+
+    public function edit(Request $request){
+
+        $id = $request->input('id');
+        $item = Product::findOrFail($id);
+        ProductController::add($request, $item);
 
         return redirect()->back();
     }

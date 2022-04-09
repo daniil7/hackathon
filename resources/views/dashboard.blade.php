@@ -32,6 +32,9 @@
                             <div class="text-center">
                                 <div class="font-bold text-xl">{{$item->name}}</div>
                                 <div class="text-sm">{{$item->price}} рублей</div>
+                                @if(Auth::User()->is_admin)
+                                <a href="/tanechka/product/{{$item->id}}">редактировать</a>
+                                @endif
                             </div>
                         </div>
 

@@ -22,17 +22,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function (Request $reqest, $category = null) {
-    return view('dashboard', ['category' => false, 'collection' => false, 'item' => null]);
-})->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard/category/{category?}', function (Request $reqest, $category = null) {
-    return view('dashboard', ['category' => true, 'collection' => false, 'item' => $category]);
-})->middleware(['auth']);
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', function (Request $request) {
+        return view('dashboard', ['category' => false, 'collection' => false, 'item' => null]);
+    })->name('dashboard');
 
-Route::get('/dashboard/collection/{collection?}', function (Request $reqest, $collection = null) {
-    return view('dashboard', ['category' => false, 'collection' => true, 'item' => $collection]);
-})->middleware(['auth']);
+    Route::get('/category/{category}', function (Request $request, $category) {
+        return view('dashboard', ['category' => true, 'collection' => false, 'item' => $category]);
+    });
+
+    Route::get('/collection/{collection}', function (Request $request, $collection) {
+        return view('dashboard', ['category' => false, 'collection' => true, 'item' => $collection]);
+    });
+});
 
 
 

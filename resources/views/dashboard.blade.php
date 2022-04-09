@@ -6,10 +6,14 @@
     </x-slot>
 
     <?php
-    if($category == null){
-        $items = App\Http\Controllers\ProductController::getAll($category);
+    if($category != null){
+        $items = App\Http\Controllers\ProductController::getByCategory($item);
     } else {
-        $items = App\Http\Controllers\ProductController::getByCategory($category);
+        if($collection != null){
+            $items = App\Http\Controllers\ProductController::getByCollection($item);
+        } else {
+            $items = App\Http\Controllers\ProductController::getAll();
+        }
     }
     ?>
 

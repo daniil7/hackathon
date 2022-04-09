@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Collection;
 
 class ProductController extends Controller
 {
@@ -20,5 +21,18 @@ class ProductController extends Controller
         } else {
             return [];
         }
+    }
+
+    public static function getByCollection($collection){
+        $arr = Collection::where('name', $collection)->first();
+        if($arr != null){
+            return $arr->products;
+        } else {
+            return [];
+        }
+    }
+
+    public static function add(){
+        
     }
 }

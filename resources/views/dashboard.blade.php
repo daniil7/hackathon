@@ -28,7 +28,7 @@
                     @foreach ($items as $item)
 
                         <div class="rounded shadow-lg">
-                            <img class="w-full rounded object-center" src="/external-content.jpeg">
+                            <img class="w-full rounded object-center" src="/images/{{$item->image}}">
                             <div class="text-center">
                                 <div class="font-bold text-xl">{{$item->name}}</div>
                                 <div class="text-sm">100 баллов</div>

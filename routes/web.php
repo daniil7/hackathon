@@ -45,6 +45,10 @@ Route::group(['middleware' => 'is.admin'], function () {
         return view('tanechka');
     }) -> name('tanechka');
 
+    Route::post('/tanechka/add_category', 'App\Http\Controllers\CategoryController@add');
+    Route::post('/tanechka/add_collection', 'App\Http\Controllers\CollectionController@add');
+    Route::post('/tanechka/add_product', 'App\Http\Controllers\ProductController@add');
+
     Route::get('/tanechka/categories', function() {
         return Category::all();
     });

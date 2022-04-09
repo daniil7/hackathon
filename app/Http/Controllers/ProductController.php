@@ -50,7 +50,7 @@ class ProductController extends Controller
         //
         // Валидация данных
 
-        $request->validate(request(),[
+        $request->validate([
                'name' => ['required'],
                'price' => ['required', 'numeric'],
                'category_id' => ['required', 'numeric']
@@ -61,9 +61,9 @@ class ProductController extends Controller
         }
 
         $mimes = array('jpeg','png','jpg','svg');
-        $request->validate(request(),[
+        $request->validate([
                'image' => ['required','image','mimes:'.implode(',', $mimes),'max:2048']
-           ]);
+        ]);
         //
         // Сохраняем файл
         $file = $request->file('image');
@@ -71,7 +71,7 @@ class ProductController extends Controller
             return redirect()->back()->withErrors(['msg' => 'Неправильное расширение файла', 'img' => True]);
         }
         $destinationPath = storage_path('laravel');
-        $new_filename = getRandomString(30).$file->getClientOriginalExtension();
+        $new_filename = $this->getRandomString(30).".".$file->getClientOriginalExtension();
         $file->move($destinationPath,$new_filename);
 
         $product = new Product;

@@ -25,7 +25,7 @@
 
             @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="btn btn-blue text-xl">В магазин</a>
+                        <a href="{{ route('dashboard') }}" class="btn btn-blue text-xl">В магазин</a>
                     @else
                     <div class="mt-8">
                         <a class="btn btn-blue mr-6 text-xl" href="{{ route('login') }}">Войти</a>

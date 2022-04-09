@@ -19,4 +19,17 @@ class CategoryController extends Controller
 
         return redirect()->back();
     }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+               'name' => 'required'
+        ]); 
+        $name = $request->input('name');
+        $category = Category::find($id);
+        $category->name = $name;
+        $category->save();
+
+        return redirect()->back();
+    }
+
 }

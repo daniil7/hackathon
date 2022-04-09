@@ -30,11 +30,11 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/category/{category}', function (Request $request, $category) {
         return view('dashboard', ['category' => true, 'collection' => false, 'item' => $category]);
-    });
+    })->name('category');
 
     Route::get('/collection/{collection}', function (Request $request, $collection) {
         return view('dashboard', ['category' => false, 'collection' => true, 'item' => $collection]);
-    });
+    })->name('collection');
 });
 
 

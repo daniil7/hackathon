@@ -13,12 +13,30 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        <span class="text-sm">Главная</span>
                     </x-nav-link>
                 </div>
+
+                <div class="flex items-center sm:ml-8">
+                    <div x-data="{dropdownMenuCategories: false}" class="relative">
+                        <!-- Dropdown toggle button -->
+                        <button @click="dropdownMenuCategories = ! dropdownMenuCategories">
+                            <span class="text-sm">Категории</span>
+                        </button>
+                        <!-- Dropdown list -->
+                        <div x-show="dropdownMenuCategories" class="absolute right-0 py-2 mt-2 bg-white bg-gray-100 rounded-md shadow-xl w-44">
+                            @foreach (App\Models\Category::All() as $item)
+                            <a href="{{ route('dashboard') }}/{{$item->name}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                {{$item->name}}
+                            </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Settings Dropdown -->
+            <!-- Log in/out Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @if (Route::has('login'))
                         @auth

@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Model\Category;
-use App\Model\Product;
-use App\Model\Item;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Item;
 
 /*
 |--------------------------------------------------------------------------

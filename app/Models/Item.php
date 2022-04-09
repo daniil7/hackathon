@@ -12,5 +12,5 @@ class Item extends Model
     protected $fillable = [
         'size',
         'amount'
-    ]    
+    ];    
 }

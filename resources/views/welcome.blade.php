@@ -16,7 +16,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
 
     </head>
-    <body class="antialiased bg-black text-color-main">
+    <body class="antialiased bg-color-main text-color-main">
 
         <div class="pt-36 md:pb-36 md:pt-56 text-center flex flex-col items-center">
             <h1 class="title text-5xl md:text-5xl lg:text-6xl max-w-[720px] mb-10">

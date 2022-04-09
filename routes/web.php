@@ -22,9 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function (Request $request) {
-    
-    return view('dashboard');
+Route::get('/dashboard/{category?}', function (Request $reqest, $category = null) {
+    return view('dashboard', ['category' => $category]);
 })->middleware(['auth'])->name('dashboard');
 
 

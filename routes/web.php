@@ -35,6 +35,20 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/collection/{collection}', function (Request $request, $collection) {
         return view('dashboard', ['category' => false, 'collection' => true, 'item' => $collection]);
     })->name('collection');
+
+    Route::get('/users/me', function () {
+        $user = Auth::user();
+        return view('user', ['user' => $user]);
+    });
+    
+    Route::get('/users/{id}', function ($id) {
+        $user = User::find($id);
+        if ($user == null)
+            return abort(404);
+
+        return view('user', ['user' => $user]);
+    });
+
 });
 
 

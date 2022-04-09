@@ -78,6 +78,7 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->price = $request->input('price');
         $product->description = $request->input('description') != null ? $request->input('description') : "";
+        $product->description = $request->input('collection_id') != null ? $request->input('collection_id') : null;
         $product->category_id = $request->input('category_id');
         $product->image = $new_filename;
         $product->save();

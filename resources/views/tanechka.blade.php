@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3">
                 <h2>Список категорий:</h2>
                 <div class="flex flex-wrap flex-row">
                     @foreach (App\Models\Category::All() as $item)
@@ -27,7 +27,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3">
                 <h2>Список Коллекций:</h2>
                 <div class="flex flex-wrap flex-row">
                     @foreach (App\Models\Collection::All() as $item)
@@ -61,6 +61,12 @@
                         <label>Категория</label>
                         <select name="category_id">
                             @foreach (App\Models\Category::All() as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                        <label>Коллекция</label>
+                        <select name="collection_id">
+                            @foreach (App\Models\Collection::All() as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                         </select>

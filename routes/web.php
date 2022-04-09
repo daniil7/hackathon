@@ -35,6 +35,7 @@ Route::get('/dashboard/collection/{collection?}', function (Request $reqest, $co
 })->middleware(['auth']);
 
 
+
 Route::group(['middleware' => 'is.admin'], function () {
     Route::get('/tanechka/categories', function() {
         return Category::all();
@@ -51,6 +52,9 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::get('/tanechka/users', function() {
         return User::all();
     });
+
+    Route::post('/category', 'App\Http\Controllers\CategoryController@add');
+    Route::post('/collection', 'App\Http\Controllers\CollectionController@add');
 
 });
 

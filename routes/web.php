@@ -40,6 +40,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 Route::group(['middleware' => 'is.admin'], function () {
+
+    Route::get('/tanechka', function() {
+        return view('tanechka');
+    }) -> name('tanechka');
+
     Route::get('/tanechka/categories', function() {
         return Category::all();
     });
@@ -58,7 +63,7 @@ Route::group(['middleware' => 'is.admin'], function () {
 
     Route::post('/category', 'App\Http\Controllers\CategoryController@add');
     Route::put('/category/{id}', 'App\Http\Controllers\CategoryController@update');
-    
+
     Route::post('/collection', 'App\Http\Controllers\CollectionController@add');
     Route::put('/collection/{id}', 'App\Http\Controllers\CollectionController@update');
 

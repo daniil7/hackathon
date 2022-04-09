@@ -10,6 +10,19 @@ use App\Models\Collection;
 
 class ProductController extends Controller
 {
+
+    function getRandomString($n) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+
+        for ($i = 0; $i < $n; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+
+        return $randomString;
+    }
+
     public static function getAll(){
         return Product::All();
     }
@@ -32,7 +45,43 @@ class ProductController extends Controller
         }
     }
 
-    public static function add(){
-        
+    public function add(Request $request){
+
+        //
+        // Валидация данных
+
+        $request->validate(request(),[
+               'name' => ['required'],
+               'price' => ['required', 'numeric'],
+               'category_id' => ['required', 'numeric']
+        ]);
+
+        if(Category::find($request->input('category_id')) == null) {
+            return redirect()->back()->withErrors(['msg' => 'неверный id']);
+        }
+
+        $mimes = array('jpeg','png','jpg','svg');
+        $request->validate(request(),[
+               'image' => ['required','image','mimes:'.implode(',', $mimes),'max:2048']
+           ]);
+        //
+        // Сохраняем файл
+        $file = $request->file('image');
+        if( !in_array($file->getClientOriginalExtension(), $mimes)) {
+            return redirect()->back()->withErrors(['msg' => 'Неправильное расширение файла', 'img' => True]);
+        }
+        $destinationPath = storage_path('laravel');
+        $new_filename = getRandomString(30).$file->getClientOriginalExtension();
+        $file->move($destinationPath,$new_filename);
+
+        $product = new Product;
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->description = $request->input('description') != null ? $request->input('description') : "";
+        $product->category_id = $request->input('category_id');
+        $product->image = $new_filename;
+        $product->save();
+
+        return redirect()->back();
     }
 }

@@ -26,7 +26,7 @@
                         <!-- Dropdown list -->
                         <div x-show="dropdownMenuCategories" class="absolute right-0 py-2 mt-2 bg-white bg-gray-100 rounded-md shadow-xl w-44">
                             @foreach (App\Models\Category::All() as $item)
-                            <a href="{{ route('dashboard') }}/{{$item->name}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="{{ route('category', ['category' => $item->name]) }}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 {{$item->name}}
                             </a>
                             @endforeach
@@ -43,7 +43,7 @@
                         <!-- Dropdown list -->
                         <div x-show="dropdownMenuCategories" class="absolute right-0 py-2 mt-2 bg-white bg-gray-100 rounded-md shadow-xl w-44">
                             @foreach (App\Models\Collection::All() as $item)
-                            <a href="{{ route('dashboard') }}/{{$item->name}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="{{ route('collection', ['collection' => $item->name]) }}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 {{$item->name}}
                             </a>
                             @endforeach

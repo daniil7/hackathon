@@ -29,6 +29,9 @@
                             <div class="text-center">
                                 <div class="font-bold text-xl">{{$product->name}}</div>
                                 <div class="text-sm">{{$product->price}} рублей</div>
+                                <div class="text-rose-500">
+                                    <a href="/cart/remove/{{$cart->id}}">удалить</a>
+                                </div>
                             </div>
                         </div>
 

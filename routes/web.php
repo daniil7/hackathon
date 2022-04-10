@@ -57,6 +57,8 @@ Route::group(['middleware' => 'auth'], function() {
         return view('buy', ['id' => $id]);
     });
 
+    Route::get('/cart/remove/{id}', 'App\Http\Controllers\ProductController@removeCart');
+
     Route::post('/product/buy', 'App\Http\Controllers\ProductController@buy');
 
     Route::post('/promocode/activate', 'App\Http\Controllers\PromocodeController@activate');

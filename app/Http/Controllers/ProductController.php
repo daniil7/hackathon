@@ -136,4 +136,14 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function removeCart($id) {
+
+        $cart = Cart::findOrFail($id);
+        if(Auth::user()->cart_items()->get()->contains($cart)) {
+            $cart->delete();
+        }
+
+        return redirect()->back();
+    }
 }

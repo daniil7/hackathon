@@ -33,7 +33,7 @@
                             <img class="w-full rounded object-center" src="/images/{{$item->image}}">
                             <div class="text-center">
                                 <div class="font-bold text-xl">{{$item->name}}</div>
-                                <div class="text-sm">{{$item->price}} рублей</div>
+                                <div class="text-sm">{{$item->price}} ₽</div>
                                 @if(Auth::User()->is_admin)
                                 <div class="text-blue-500">
                                     <a href="/tanechka/product/{{$item->id}}">редактировать</a>
@@ -42,11 +42,6 @@
                                     <a href="/tanechka/remove_product/{{$item->id}}">удалить</a>
                                 </div>
                                 @endif
-                                <!-- @foreach(App\Http\Controllers\ItemController::getAll($item) as $pair)
-                                    @foreach ($pair as $size => $amount)
-                                    {{$size}} {{$amount}}
-                                    @endforeach
-                                @endforeach -->
                              </div>
                             </a>
                         </div>

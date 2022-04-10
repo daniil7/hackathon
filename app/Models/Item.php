@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'size',
-        'amount'
-    ];    
+        'amount',
+    ];
+
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
+
 }

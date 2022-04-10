@@ -34,8 +34,12 @@
                                 <div class="font-bold text-xl">{{$item->name}}</div>
                                 <div class="text-sm">{{$item->price}} рублей</div>
                                 @if(Auth::User()->is_admin)
-                                <a href="/tanechka/product/{{$item->id}}">редактировать</a>
-                                <a href="/tanechka/remove_product/{{$item->id}}">удалить</a>
+                                <div class="text-blue-500">
+                                    <a href="/tanechka/product/{{$item->id}}">редактировать</a>
+                                </div>
+                                <div class="text-rose-500">
+                                    <a href="/tanechka/remove_product/{{$item->id}}">удалить</a>
+                                </div>
                                 @endif
 
                                 <a href="/buy/{{$item->id}}">в корзину</a>

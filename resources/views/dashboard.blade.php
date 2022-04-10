@@ -29,6 +29,7 @@
                     @foreach ($items as $item)
 
                         <div class="rounded shadow-lg">
+                            <a href="/buy/{{$item->id}}">
                             <img class="w-full rounded object-center" src="/images/{{$item->image}}">
                             <div class="text-center">
                                 <div class="font-bold text-xl">{{$item->name}}</div>
@@ -41,15 +42,13 @@
                                     <a href="/tanechka/remove_product/{{$item->id}}">удалить</a>
                                 </div>
                                 @endif
-
-                                <a href="/buy/{{$item->id}}">в корзину</a>
-
                                 <!-- @foreach(App\Http\Controllers\ItemController::getAll($item) as $pair)
                                     @foreach ($pair as $size => $amount)
                                     {{$size}} {{$amount}}
                                     @endforeach
                                 @endforeach -->
-                            </div>
+                             </div>
+                            </a>
                         </div>
 
                     @endforeach

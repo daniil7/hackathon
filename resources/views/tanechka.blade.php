@@ -9,17 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3">
                 <h2>Список категорий:</h2>
-                <div class="flex flex-wrap flex-row">
+                <div class="flex flex-wrap flex-row mb-10">
                     @foreach (App\Models\Category::All() as $item)
                         <span class="bg-cyan-200 text-center rounded mx-4 text-teal-800">{{$item->name}}</span>
                     @endforeach
                 </div>
-                <h2 class="my-5">Создать новую категорию:</h2>
                 <form class="needs-validation" method="POST" action="/tanechka/add_category">
                     @csrf
-                        <label>Название</label>
-                        <input type="text" class="form-control" name="name" placeholder="Название категории:" value="" required>
-                    <button class="btn btn-primary" type="submit"> Добавить </button>
+                        <input type="text" class="form-control" name="name" placeholder="Название коллекции" value="" required>
+                    <button class="btn btn-primary ml-4" type="submit"> Добавить </button>
                 </form>
             </div>
         </div>
@@ -28,18 +26,16 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3">
-                <h2>Список Коллекций:</h2>
-                <div class="flex flex-wrap flex-row">
+                <h2>Список коллекций:</h2>
+                <div class="flex flex-wrap flex-row mb-10">
                     @foreach (App\Models\Collection::All() as $item)
                         <span class="bg-cyan-200 text-center rounded mx-4 text-teal-800">{{$item->name}}</span>
                     @endforeach
                 </div>
-                <h2 class="my-5">Создать новую коллекцию:</h2>
                 <form class="needs-validation" method="POST" action="/tanechka/add_collection">
                     @csrf
-                        <label>Название</label>
-                        <input type="text" class="form-control" name="name" placeholder="Название категории:" value="" required>
-                    <button class="btn btn-primary" type="submit"> Добавить </button>
+                        <input type="text" class="form-control" name="name" placeholder="Название коллекции" value="" required>
+                    <button class="btn btn-primary ml-4" type="submit"> Добавить </button>
                 </form>
             </div>
         </div>
@@ -49,21 +45,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3">
                 <h2>Список промокодов:</h2>
-                <div class="flex flex-wrap flex-row">
+                <div class="flex flex-wrap flex-row mb-10">
                     @foreach (App\Models\Promocode::All() as $item)
                         <span class="bg-cyan-200 text-center rounded mx-4 text-teal-800">
                             {{$item->name}}: {{$item->amount}}
                         </span>
                     @endforeach
                 </div>
-                <h2 class="my-5">Создать новый промокод:</h2>
                 <form class="needs-validation" method="POST" action="/promocode">
                     @csrf
-                        <label>Промокод</label>
-                        <input type="text" class="form-control" name="name" placeholder="PROMO" value="" required>
-                        <label>Сумма</label>
+                        <input type="text" class="form-control" name="name" placeholder="Промокод" value="" required>
+                        <label class="ml-4 mr-1">Сумма:</label>
                         <input type="text" class="form-control" name="amount" placeholder="100.00" value="" required>
-                    <button class="btn btn-primary" type="submit"> Принять </button>
+                    <button class="btn btn-primary ml-4" type="submit"> Добавить </button>
                 </form>
             </div>
         </div>

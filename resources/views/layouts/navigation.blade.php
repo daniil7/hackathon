@@ -3,12 +3,6 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
-                </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -17,6 +11,14 @@
                     </x-nav-link>
                 </div>
 
+                @if (Auth::user()->is_admin)
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('tanechka')" :active="request()->routeIs('tanechka')">
+                        <span class="text-sm">Танечка</span>
+                    </x-nav-link>
+                </div>
+                @endif
+                
                 <div class="flex items-center sm:ml-8">
                     <div x-data="{dropdownMenuCategories: false}" class="relative">
                         <!-- Dropdown toggle button -->
@@ -51,14 +53,6 @@
                     </div>
                 </div>
 
-                @if (Auth::user()->is_admin)
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('tanechka')" :active="request()->routeIs('tanechka')">
-                        <span class="text-sm">Танечка</span>
-                    </x-nav-link>
-                </div>
-                @endif
-
             </div>
 
             <!-- Log in/out Dropdown -->
@@ -87,9 +81,12 @@
                                     <x-dropdown-link :href="route('logout')"
                                             onclick="event.preventDefault();
                                                         this.closest('form').submit();">
-                                        {{ __('Log Out') }}
+                                        Выйти
                                     </x-dropdown-link>
                                 </form>
+                                    <x-dropdown-link :href="route('me')">
+                                        Личный кабинет
+                                    </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
 

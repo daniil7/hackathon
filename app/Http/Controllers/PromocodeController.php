@@ -30,6 +30,10 @@ class PromocodeController extends Controller
         ]); 
         $name = $request->input('name');
         $promocode = Promocode::where('name', $name)->first();
+
+        if ($promocode == null)
+            return redirect()->back();
+        
         Auth::user()->increment('balance', $promocode->amount);
         
         return redirect()->back();

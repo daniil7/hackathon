@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/users/me', function () {
         $user = Auth::user();
         return view('user', ['user' => $user]);
-    });
+    })->name('me');
 
     Route::get('/users/{id}', function ($id) {
         $user = User::find($id);

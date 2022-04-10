@@ -52,7 +52,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/cart', function() {
         return view('cart');
     });
-    
+
+    Route::get('/buy/{id}', function($id) {
+        return view('buy', ['id' => $id]);
+    });
+
     Route::post('/product/buy', 'App\Http\Controllers\ProductController@buy');
 
     Route::post('/promocode/activate', 'App\Http\Controllers\PromocodeController@activate');

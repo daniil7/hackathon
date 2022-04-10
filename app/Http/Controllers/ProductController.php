@@ -118,18 +118,22 @@ class ProductController extends Controller
     public function buy(Request $request){
         $request->validate([
                'product_id' => ['required', 'numeric'],
-               'size' => ['required', 'numeric'],
+               'size' => ['required'],
                'amount' => ['required', 'numeric']
         ]);
 
         $user = Auth::user();
         $cart = new Cart;
-        $item = Product::findOrFail($product_id)->items->where('size', $request->input('size'))->first();
+        $item = Product::findOrFail($request->input('product_id'))->items->where('size', $request->input('size'))->first();
 
+        // if($item == null) {
+        //     return redirect()->back();
+        // }
         $cart->item_id = $item->id;
         $cart->amount = $request->input('amount');
 
         $user->cart_items()->save($cart);
 
+        return redirect()->back();
     }
 }

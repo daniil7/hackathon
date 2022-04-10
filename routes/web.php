@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/cart', function() {
         return view('cart');
-    });
+    })->name('cart');
 
     Route::get('/buy/{id}', function($id) {
         return view('buy', ['id' => $id]);

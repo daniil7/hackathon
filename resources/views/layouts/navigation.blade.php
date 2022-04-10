@@ -77,6 +77,9 @@
                                 <x-dropdown-link :href="route('me')">
                                     Личный кабинет
                                 </x-dropdown-link>
+                                <x-dropdown-link :href="route('cart')">
+                                    Корзина
+                                </x-dropdown-link>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
 

@@ -49,6 +49,12 @@ Route::group(['middleware' => 'auth'], function() {
         return view('user', ['user' => $user]);
     });
 
+    Route::get('/cart', function() {
+        return view('cart');
+    });
+    
+    Route::post('/product/buy', 'App\Http\Controllers\ProductController@buy');
+
     Route::post('/promocode/activate', 'App\Http\Controllers\PromocodeController@activate');
 });
 

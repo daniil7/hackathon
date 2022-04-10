@@ -19,7 +19,7 @@
                     @csrf
                         <label>Название</label>
                         <input type="text" class="form-control" name="name" placeholder="Название категории:" value="" required>
-                    <button class="btn btn-primary" type="submit"> Принять </button>
+                    <button class="btn btn-primary" type="submit"> Добавить </button>
                 </form>
             </div>
         </div>
@@ -39,7 +39,7 @@
                     @csrf
                         <label>Название</label>
                         <input type="text" class="form-control" name="name" placeholder="Название категории:" value="" required>
-                    <button class="btn btn-primary" type="submit"> Принять </button>
+                    <button class="btn btn-primary" type="submit"> Добавить </button>
                 </form>
             </div>
         </div>
@@ -91,6 +91,7 @@
                         </select>
                         <label>Коллекция</label>
                         <select name="collection_id">
+                                <option value="">Ничего</option>
                             @foreach (App\Models\Collection::All() as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
@@ -98,7 +99,7 @@
                         <label for="img">Загрузить файл</label>
                         <input class="block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded-lg" id="img" name="image" type="file">
                     </div>
-                    <button class="btn btn-primary m-2" type="submit"> Принять </button>
+                    <button class="btn btn-primary m-2" type="submit"> Добавить </button>
                 </form>
             </div>
         </div>

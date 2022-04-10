@@ -63,21 +63,20 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::post('/tanechka/add_category', 'App\Http\Controllers\CategoryController@add');
     Route::post('/tanechka/add_collection', 'App\Http\Controllers\CollectionController@add');
     Route::post('/tanechka/add_product', 'App\Http\Controllers\ProductController@add');
-    Route::post('/promocode', 'App\Http\Controllers\PromocodeController@add');
-
+    Route::post('/tanechka/edit_product', 'App\Http\Controllers\ProductController@edit');
+    Route::get('/tanechka/product/{id}', function($id) {
+        return view('tanechka_item', ['id' => $id]);
+    });
 
     Route::get('/tanechka/categories', function() {
         return Category::all();
     });
-
     Route::get('/tanechka/products', function() {
         return Product::all();
     });
-
     Route::get('/tanechka/items', function() {
         return Item::all();
     });
-
     Route::get('/tanechka/users', function() {
         return User::all();
     });
@@ -87,7 +86,8 @@ Route::group(['middleware' => 'is.admin'], function () {
 
     Route::post('/collection', 'App\Http\Controllers\CollectionController@add');
     Route::put('/collection/{id}', 'App\Http\Controllers\CollectionController@update');
-
+    
+    Route::post('/promocode', 'App\Http\Controllers\PromocodeController@add');
 });
 
 require __DIR__.'/auth.php';

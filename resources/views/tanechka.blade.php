@@ -47,6 +47,31 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3">
+                <h2>Список промокодов:</h2>
+                <div class="flex flex-wrap flex-row">
+                    @foreach (App\Models\Promocode::All() as $item)
+                        <span class="bg-cyan-200 text-center rounded mx-4 text-teal-800">
+                            {{$item->name}}: {{$item->amount}}
+                        </span>
+                    @endforeach
+                </div>
+                <h2 class="my-5">Создать новый промокод:</h2>
+                <form class="needs-validation" method="POST" action="/promocode">
+                    @csrf
+                        <label>Промокод</label>
+                        <input type="text" class="form-control" name="name" placeholder="PROMO" value="" required>
+                        <label>Сумма</label>
+                        <input type="text" class="form-control" name="amount" placeholder="100.00" value="" required>
+                    <button class="btn btn-primary" type="submit"> Принять </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <h2 class="my-5 mx-2">Создать новый объект:</h2>
                 <form class="needs-validation" method="POST" action="/tanechka/add_product" enctype="multipart/form-data">

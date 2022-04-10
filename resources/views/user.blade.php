@@ -10,5 +10,13 @@
         <h2>
             Баланс: {{ $user->balance }}
         </h2>
+        @if (Auth::user()->id == $user->id)
+                <form class="needs-validation" method="POST" action="/promocode/activate">
+                    @csrf
+                        <label>Ввести промокод: </label>
+                        <input type="text" class="form-control" name="name" placeholder="PROMO" value="" required>
+                    <button class="btn btn-primary" type="submit">Активировать</button>
+                </form>
+        @endif
     </x-slot>
 </x-app-layout>

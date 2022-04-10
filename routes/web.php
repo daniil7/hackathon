@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function() {
         return view('user', ['user' => $user]);
     });
 
+    Route::post('/promocode/activate', 'App\Http\Controllers\PromocodeController@activate');
 });
 
 
@@ -62,6 +63,8 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::post('/tanechka/add_category', 'App\Http\Controllers\CategoryController@add');
     Route::post('/tanechka/add_collection', 'App\Http\Controllers\CollectionController@add');
     Route::post('/tanechka/add_product', 'App\Http\Controllers\ProductController@add');
+    Route::post('/promocode', 'App\Http\Controllers\PromocodeController@add');
+
 
     Route::get('/tanechka/categories', function() {
         return Category::all();

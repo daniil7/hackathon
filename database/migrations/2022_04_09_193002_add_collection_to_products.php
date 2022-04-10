@@ -17,7 +17,8 @@ class AddCollectionToProducts extends Migration
             $table->integer('collection_id')->unsigned()->nullable();
             $table->foreign('collection_id')
                   ->references('id')
-                  ->on('collections');
+                  ->on('collections')
+                  ->onDelete('cascade');
         });
     }
 

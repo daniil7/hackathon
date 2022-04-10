@@ -74,7 +74,9 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <!-- Authentication -->
+                                <x-dropdown-link :href="route('me')">
+                                    Личный кабинет
+                                </x-dropdown-link>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
 
@@ -84,9 +86,6 @@
                                         Выйти
                                     </x-dropdown-link>
                                 </form>
-                                    <x-dropdown-link :href="route('me')">
-                                        Личный кабинет
-                                    </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
 

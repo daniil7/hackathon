@@ -44,6 +44,33 @@
         </div>
     </div>
 
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <h2 class="my-5 mx-2">Редактировать объект:</h2>
+                <form class="needs-validation" method="POST" action="/tanechka/add_item">
+                    @csrf
+                    <div class="grid grid-cols-2 gap-1 mr-auto w-3/4 mx-2">
+                        <label>Изменение количеста</label>
+                        <input type="number" class="form-control" name="amount" required>
+                        <label>Размер</label>
+                        <select name="size">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XS">XS</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                    <button class="btn btn-primary m-2" type="submit"> Принять </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     @else
 
     <h1 class="text-5xl md:text-5xl lg:text-6xl text-center pt-10">

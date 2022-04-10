@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
         $user = Auth::user();
         return view('user', ['user' => $user]);
     });
-    
+
     Route::get('/users/{id}', function ($id) {
         $user = User::find($id);
         if ($user == null)
@@ -64,6 +64,8 @@ Route::group(['middleware' => 'is.admin'], function () {
     Route::post('/tanechka/add_collection', 'App\Http\Controllers\CollectionController@add');
     Route::post('/tanechka/add_product', 'App\Http\Controllers\ProductController@add');
     Route::post('/tanechka/edit_product', 'App\Http\Controllers\ProductController@edit');
+    Route::get('/tanechka/remove_product/{id}', 'App\Http\Controllers\ProductController@remove');
+    Route::post('/tanechka/add_item', 'App\Http\Controllers\ItemController@add');
     Route::get('/tanechka/product/{id}', function($id) {
         return view('tanechka_item', ['id' => $id]);
     });
@@ -86,7 +88,7 @@ Route::group(['middleware' => 'is.admin'], function () {
 
     Route::post('/collection', 'App\Http\Controllers\CollectionController@add');
     Route::put('/collection/{id}', 'App\Http\Controllers\CollectionController@update');
-    
+
     Route::post('/promocode', 'App\Http\Controllers\PromocodeController@add');
 });
 

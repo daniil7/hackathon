@@ -15,6 +15,7 @@
             $items = App\Http\Controllers\ProductController::getAll();
         }
     }
+
     ?>
 
     @if(empty($items) == false)
@@ -34,7 +35,14 @@
                                 <div class="text-sm">{{$item->price}} рублей</div>
                                 @if(Auth::User()->is_admin)
                                 <a href="/tanechka/product/{{$item->id}}">редактировать</a>
+                                <a href="/tanechka/remove_product/{{$item->id}}">удалить</a>
                                 @endif
+
+                                @foreach(App\Http\Controllers\ItemController::getAll($item) as $pair)
+                                    @foreach ($pair as $size => $amount)
+                                    {{$size}} {{$amount}}
+                                    @endforeach
+                                @endforeach
                             </div>
                         </div>
 

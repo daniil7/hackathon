@@ -103,4 +103,12 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function remove($id) {
+
+        $item = Product::findOrFail($id);
+        $item->delete();
+
+        return redirect()->back();
+    }
 }

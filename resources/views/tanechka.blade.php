@@ -84,7 +84,7 @@
                         <label>Описание</label>
                         <input type="text" class="form-control" name="description" placeholder="Описание" value="">
                         <label>Категория</label>
-                        <select name="category_id">
+                        <select name="category_id" required>
                             @foreach (App\Models\Category::All() as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach

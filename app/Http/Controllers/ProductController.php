@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Collection;
+use App\Models\Cart;
+
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -110,5 +113,23 @@ class ProductController extends Controller
         $item->delete();
 
         return redirect()->back();
+    }
+
+    public function buy(Request $request){
+        $request->validate([
+               'product_id' => ['required', 'numeric'],
+               'size' => ['required', 'numeric'],
+               'amount' => ['required', 'numeric']
+        ]);
+
+        $user = Auth::user();
+        $cart = new Cart;
+        $item = Product::findOrFail($product_id)->items->where('size', $request->input('size'))->first();
+
+        $cart->item_id = $item->id;
+        $cart->amount = $request->input('amount');
+
+        $user->cart_items()->save($cart);
+
     }
 }

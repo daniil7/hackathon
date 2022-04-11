@@ -1,3 +1,4 @@
-/node_modules
-/public
-/storage/laravel
+node_modules/
+public/
+storage/laravel/
+package-lock.json
